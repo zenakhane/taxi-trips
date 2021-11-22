@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - 12
+  
+
+  
+
+env:
+  - DATABASE_URL=postgresql://postgres@localhost:5432/region_taxis
+
+node_js:  
+  - 14
+
+before_script:
+  - psql -c 'create database  region_taxis' -U postgres
+  - psql -U postgres -d region_taxis -a -f tables.sql
+
+services:
+  - postgresql
+  
